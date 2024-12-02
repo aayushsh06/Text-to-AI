@@ -9,8 +9,6 @@ TEXT = content
 
 def expand_contractions(text):
     contractions_dict = {
-        "AITAH": "Am I the Ass Hole",
-        "SIL": "Sister in Law",
         "lowkey": "low key",
         "outta": "out of",
         "gotta": "got to",
