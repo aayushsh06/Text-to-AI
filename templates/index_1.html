@@ -1,1 +1,417 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainrot to AI</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #ECF0F1;
+      color: #2C3E50;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      height: 100%;
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    .top-banner {
+      width: 100%;
+      background-color: #2C3E50;
+      color: white;
+      padding: 20px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .top-banner:hover {
+      background-color: #34495E;
+    }
+
+    .main-content {
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .main-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #2C3E50;
+      font-weight: 600;
+    }
+
+    textarea {
+      width: 100%;
+      height: 400px;
+      font-size: 16px;
+      padding: 15px;
+      border: 1px solid #BDC3C7;
+      border-radius: 10px;
+      resize: none;
+      background-color: #fafafa;
+      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: border 0.3s ease;
+    }
+
+    textarea:focus {
+      border-color: #2C3E50;
+      outline: none;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .button-container .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 30%; /* Adjust as necessary to ensure proper spacing */
+      
+    }
+
+    select, button {
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #BDC3C7;
+      background-color: #ffffff;
+      color: #2C3E50;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      border-color: #2196f3;
+    }
+
+    button {
+      background-color: #2C3E50;
+      color: white;
+      border: none;
+      border-color: #2196f3;
+    }
+
+    button:hover {
+      background-color: #34495E;
+      transform: scale(1.05);
+    }
+
+    .loading {
+      font-size: 2rem;
+      color: #2C3E50;
+      margin-top: 20px;
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Circle Animation */
+    .loading-circle {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 40px;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      object-fit: contain;
+    }
+
+    .download-btn {
+      background-color: #2C3E50;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.4rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+      align-self: center;
+    }
+
+    .download-btn:hover {
+      background-color: #34495E;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .download-btn:focus {
+      outline: none;
+      border: 2px solid #2C3E50;
+      box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 20px;
+      }
+
+      .button-container {
+        flex-direction: column;
+        border-color: #2C3E50;
+      }
+
+      .button-container .section {
+        width: 100%;
+        border-color: #2C3E50;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      textarea {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner" onclick="goHome()">Brainrot to AI</div>
+
+  <div class="main-content">
+    <h1>Create Your Video</h1>
+
+    <!-- Button Sections -->
+    <div class="button-container">
+      <!-- Make AI Story Section -->
+      <div class="section" style="justify-content:left; margin-left:100px;">
+        <select id="storyCategory">
+          <option value="" disabled selected>Select Story Genre</option>
+          <option value="horror">Horror</option>
+          <option value="mystery">Mystery</option>
+          <option value="fiction">Fiction</option>
+          <option value="scifi">Sci-Fi</option>
+          <option value="real non-fiction story about people doing/experiencing crazy things | actual events">Non-Fiction</option>
+          <option value="real historical story">Historical</option>
+          <option value="drama">Drama</option>
+        </select>
+        <button onclick="makeAIStory()">Make AI Story</button>
+      </div>
+
+      <!-- Get Story from Reddit Section -->
+      <div class="section" style="justify-content:right;margin-right:100px;"> <!-- Adjust width for Reddit section -->
+        <textarea id="subreddit" placeholder="Enter A Subreddit" style="height: 43px; border-color: #2196F3; overflow: hidden; resize: none;"></textarea>
+        <button onclick="getRedditStory()">Get Reddit Stories</button>
+      </div>
+
+      <!-- Convert to Brainrot Section -->
+    </div>
+      <div class="section" style="width:630px;">
+        <button id="convertToBrainrot" onclick="convertToBrainrot()">Convert to Brainrot</button>
+     
+    </div>
+
+    <!-- Textarea -->
+    <textarea id="textInput" placeholder="Enter your story here..."></textarea>
+
+    <!-- Voice Selection and Generate Video Button -->
+    <div class="button-container" style="margin-top: 1px; justify-content: center;">
+      <div class="section">
+        <select id="modelVoice">
+          <option value="Matthew">Matthew</option>
+          <option value="Jenny">Jenny</option>
+          <option value="Eric">Eric</option>
+          <option value="Molly">Molly</option>
+          <option value="Christopher">Christopher</option>
+          <option value="Aria">Aria</option>
+        </select>
+        <button id="submitBtn" onclick="submitText()">Generate Video</button>
+      </div>
+    </div>
+
+    <div id="videoSection"></div>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="loading-circle"></div>
+    Processing...
+  </div>
+
+  <script>
+    function getRedditStory() {
+            const subreddit = document.getElementById('subreddit').value;
+
+            if (subreddit.trim() === "") {
+                alert("Please enter a subreddit.");
+                return;
+            }
+
+            // Send subreddit to the backend and fetch the story
+            fetch('/get_reddit_story', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `subreddit=${encodeURIComponent(subreddit)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === "Reddit story fetched successfully.") {
+                    // Display the fetched Reddit story in the main textarea
+                    document.getElementById('textInput').value = data.story;
+                } else {
+                    alert(data.result);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching Reddit story:', error);
+                alert('Error fetching Reddit story.');
+            });
+        }
+
+    async function submitText() {
+      document.getElementById("submitBtn").disabled = true;
+      document.getElementById("loading").style.display = 'block';
+
+      const text = document.getElementById("textInput").value;
+      const voice = document.getElementById("modelVoice").value;
+
+      const response = await fetch('/process', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `text=${encodeURIComponent(text)}&modelVoice=${encodeURIComponent(voice)}`
+      });
+
+      const data = await response.json();
+
+      document.getElementById("submitBtn").disabled = false;
+      document.getElementById("loading").style.display = 'none';
+
+      document.getElementById("textInput").classList.add('hidden');
+      document.getElementById("submitBtn").classList.add('hidden');
+
+      document.querySelector("h1").textContent = "Create Your Video";
+
+      if (data.video_url) {
+        const videoSection = document.getElementById("videoSection");
+        videoSection.innerHTML = `
+          <div class="video-container">
+            <video controls>
+              <source src="${data.video_url}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="button-container" style="justify-content: center;">
+            <a class="download-btn" href="${data.video_url}"  download>Download Video</a>
+          </div>
+        `;
+      } else {
+        videoSection.innerHTML = "<p>There was an error generating the video. Please try again.</p>";
+      }
+    }
+
+    function goHome() {
+      window.location.href = "/";
+    }
+
+    function makeAIStory() {
+      const storyType = document.getElementById('storyCategory').value;
+
+      // Send story type to the server
+      fetch('/generate_story', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `storyType=${storyType}`
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.result === 'Story generated successfully.') {
+              // Fetch the generated story content and update the textarea
+              fetch('/get_generated_story')
+                  .then(response => response.text())
+                  .then(generatedStory => {
+                      document.getElementById('textInput').value = generatedStory;
+                  });
+          } else {
+              alert('Please Select a Story Genre before generating an AI story');
+          }
+      });
+    }
+
+    async function convertToBrainrot() {
+      const response = await fetch('/convert_to_brainrot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.result === "Conversion successful.") {
+        document.getElementById("textInput").value = data.brainrot_text;
+      } else {
+        alert(data.result); 
+      }
+    }
+
+  </script>
+</body>
+</html>
