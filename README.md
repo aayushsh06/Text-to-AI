@@ -1,4 +1,7 @@
 # Brainrot-to-AI
+What is it?
+The "Brainrot AI" app automates the creation of viral-style videos inspired by "brainrot" content on platforms like YouTube and TikTok. These videos feature AI-generated voiceovers reading scripts (e.g., Reddit stories) with synchronized captions and randomly selected background visuals. 
+
 Steps to use: 
 1. Download all files 
 2. Import all neccessary APIs and libraries |.req file coming soon
