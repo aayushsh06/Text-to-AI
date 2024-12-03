@@ -69,7 +69,6 @@ def combine_words_with_dash(text):
 TEXT = expand_contractions(TEXT)
 TEXT = combine_words_with_dash(TEXT)  # Combine words with dashes
 TEXT = re.sub(r'["]', '', TEXT)  # Remove quotation marks
-TEXT = TEXT.replace("sus", "suss")  # Replace specific word
 
 with open("inputText.txt", 'w') as file:
     file.write(TEXT)
