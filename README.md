@@ -10,7 +10,7 @@ The "Brainrot AI" app automates the creation of viral-style videos inspired by "
 5. Before generating videos on personal device, you must download a .mp4 video for your background and input the filename in combine.py (To download a YT video, personalDownload.py can be used)
 
 
-- All code was run on a Python 3.13 virtual environment
+- All code was run on a Python 3.10.15 virtual environment
 
 
 
