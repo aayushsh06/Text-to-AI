@@ -1,0 +1,10 @@
+asyncio
+edge_tts
+Flask
+moviepy
+pysrt
+python-dotenv
+pytubefix
+fuzzywuzzy
+praw
+groq
