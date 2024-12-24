@@ -8,3 +8,4 @@ pytubefix
 fuzzywuzzy
 praw
 groq
+openai-whisper
