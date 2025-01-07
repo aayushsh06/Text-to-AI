@@ -14,5 +14,41 @@ The "Text-to-AI" app (formerly known as Brainrot-to-AI) automates the creation o
 - All code was run on a `Python 3.10.15` virtual environment
 
 
+## Repository File Descriptions
 
-# More Changes Soon To Come
+### `app.py`
+The main application script responsible for orchestrating the entire video creation process.
+
+### `TTS.py`
+Handles text-to-speech conversion and generates AI voiceovers for the scripts.
+
+### `genScript.py`
+Generates scripts for videos, with the ability to source content from Reddit or other platforms.
+
+### `reddit.py`
+Facilitates interaction with the Reddit API to fetch stories or posts used in video content.
+
+### `createVid.py`
+Combines the script, AI voiceover, synchronized captions, and visual assets to produce a complete video.
+
+### `makeCaption.py`
+Creates captions that are perfectly synchronized with the AI-generated voiceover.
+
+### `combine.py`
+Merges all media elements, including audio, video, and captions, into the final video output.
+
+### `requirements.txt`
+Contains a list of required Python libraries and dependencies necessary to run the application.
+
+### `inputText.txt`
+Stores input text or scripts that serve as the basis for video generation.
+
+### `subreddit.txt`
+Lists subreddit names or topics to guide the sourcing of content.
+
+### `model.txt`
+Holds model configurations or settings for AI processing.
+
+### `personalDownload.py`
+A utility script for downloading personal content or assets needed during the video creation process.
+
