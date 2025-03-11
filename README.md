@@ -5,6 +5,9 @@
 ### What is it?
 The "Text-to-AI" app (formerly known as Brainrot-to-AI) automates the creation of viral-style videos inspired by content on platforms like YouTube and TikTok. These videos feature AI-generated voiceovers reading scripts (e.g., Reddit stories) with synchronized captions and randomly selected background visuals. 
 
+![image](https://github.com/user-attachments/assets/1c4e76f2-0ed7-4d57-88bb-511ff1d9b38d)
+
+
 ### Steps to use: 
 1. Download all files 
 2. Install all neccessary APIs and libraries using `requirements.txt`
