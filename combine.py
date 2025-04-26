@@ -1,8 +1,9 @@
 import random
 from moviepy.editor import VideoFileClip, AudioFileClip, TextClip, CompositeVideoClip
 import pysrt
+import os
 
-video = VideoFileClip("minecraft_gp.mp4") #Change Filename Based on Your Download
+video = VideoFileClip(os.getenv('VIDEO_PATH'))
 
 def time_to_seconds(time_obj):
     return time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second + time_obj.microsecond / 1e6
